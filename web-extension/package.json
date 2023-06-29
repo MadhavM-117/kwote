@@ -1,0 +1,15 @@
+{
+  "name": "kwote",
+  "version": "0.1.0",
+  "description": "A web-extension that helps you capture and save notes from any webpage. ",
+  "main": "index.js",
+  "repository": "https://github.com/MadhavM-117/kwote",
+  "author": "Madhav M. <madhavmanoj117@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:firefox": "web-ext run --source-dir ./"
+  },
+  "devDependencies": {
+    "web-ext": "^7.6.2"
+  }
+}

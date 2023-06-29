@@ -1,0 +1,22 @@
+{
+
+  "manifest_version": 2,
+  "name": "Kwote",
+  "version": "0.2",
+  "description": "Kwote is a simple extension that allows you to highlight text on a webpage and save it.",
+
+  "browser_action": {
+    "default_title": "Kwote",
+    "default_popup": "popup/index.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["kwote.js"]
+    }
+  ]
+
+}
+
+
