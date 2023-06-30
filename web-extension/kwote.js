@@ -36,9 +36,52 @@
         selectionPopup = popup;
     }
 
+
+    const checkEntries = async () => {
+        const entryIds = await getData('entryIds') || [];
+        for (const entryId of entryIds) {
+            const entry = await getData(entryId);
+            console.log(entryId, entry);
+        }
+    }
+
+    // Function to save data to local storage
+    const saveData = async (key, value) => {
+        const data = {};
+        data[key] = value;
+
+        await browser.storage.local.set(data)
+            .catch(error => {
+                console.error('Error saving data:', error);
+            });
+    }
+
+    // Function to retrieve data from local storage
+    const getData = async (key) => {
+        return await browser.storage.local.get(key)
+            .then(result => {
+                return result[key];
+            })
+            .catch(error => {
+                console.error('Error retrieving data:', error);
+            });
+    }
+
     // function to save the quote
-    const saveQuote = () => {
-        console.log("saved: ", window.getSelection().toString());
+    const saveQuote =  async () => {
+        let entryIds = await getData('entryIds')|| [];
+
+        if (!Array.isArray(entryIds)) {
+            console.error("entryIds is not an array.", entryIds);
+            entryIds = [];
+        }
+
+        const uuid = window.crypto.randomUUID();
+        const quote = window.getSelection().toString();
+
+        entryIds.unshift(uuid);
+        await saveData('entryIds', entryIds);
+        await saveData(uuid, quote);
     }
 
     // Function to handle text selection
