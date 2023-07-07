@@ -84,16 +84,6 @@
         await saveData(uuid, quote);
     }
 
-    function sendMessageToBackgroundScript(message) {
-        browser.runtime.sendMessage(message)
-            .then(response => {
-                console.log('Message sent to background script:', message);
-            })
-            .catch(error => {
-                console.error('Error sending message to background script:', error);
-            });
-    }
-
     // Function to handle text selection
     const handleSelection = () => {
         const selectedText = window.getSelection().toString();
@@ -103,10 +93,6 @@
         if (selectedText && !selectionPopup) {
             createPopup(() => {
                 saveQuote();
-                sendMessageToBackgroundScript({ action: 'openNewTab' });
-                // browser.tabs.create({
-                //     url: browser.runtime.getURL('/local-preview/index.html')
-                // })
             });
         }
     }
