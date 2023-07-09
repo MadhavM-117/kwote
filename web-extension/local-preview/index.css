@@ -26,15 +26,22 @@ body, #preview-container {
 .selection-preview-container {
     display: flex;
     justify-content: space-between;
+    gap: 16px;
+    flex-direction: column;
     max-width: 800px;
     width: 100%;
-    align-items: center;
     padding: 16px;
     border: 1px solid #ccc;
     margin: 16px 0;
     border-radius: 5px;
-    gap: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.selection-preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
 }
 
 .selection-preview-content {

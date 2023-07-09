@@ -1,8 +1,27 @@
 const createSelectionPreview = (selectionText, onDelete) => {
-    const container = document.getElementById('preview-container');
+    const contentContainer = document.getElementById('preview-container');
 
     const previewContainer = document.createElement('div');
     previewContainer.classList.add('selection-preview-container');
+
+    const previewHeader = document.createElement('div');
+    previewHeader.classList.add('selection-preview-header');
+    previewContainer.appendChild(previewHeader);
+
+    const previewTitle = document.createElement('h3');
+    previewHeader.appendChild(previewTitle);
+    previewTitle.textContent = 'Selection Preview';
+
+    const previewSource = document.createElement('span');
+    previewHeader.appendChild(previewSource);
+    previewSource.textContent = 'Source URL';
+
+    const deleteButton = document.createElement('button');
+    previewHeader.appendChild(deleteButton);
+
+    deleteButton.classList.add('selection-preview-delete');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', onDelete);
 
     const preview = document.createElement('div');
     previewContainer.appendChild(preview);
@@ -10,14 +29,7 @@ const createSelectionPreview = (selectionText, onDelete) => {
     preview.classList.add('selection-preview-content');
     preview.textContent = selectionText;
 
-    const deleteButton = document.createElement('button');
-    previewContainer.appendChild(deleteButton);
-
-    deleteButton.classList.add('selection-preview-delete');
-    deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', onDelete);
-
-    container.appendChild(previewContainer);
+    contentContainer.appendChild(previewContainer);
 
     return previewContainer;
 }

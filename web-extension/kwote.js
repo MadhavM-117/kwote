@@ -10,10 +10,16 @@
     const createPopup = (buttonCallback) => {
 
         const popup = document.createElement('div');
-        popup.className = 'selection-popup';
 
         const popupButton = document.createElement('button');
-        popupButton.textContent = 'Click Me!';
+        popupButton.style.padding = '8px';
+        popupButton.style.backgroundColor = '#191919';
+        popupButton.style.color = '#fff';
+        popupButton.style.marginBottom = '4px';
+        popupButton.style.borderRadius = '4px';
+        popupButton.style.border = '1px solid #4d4d4d'
+        popupButton.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.25)';
+        popupButton.textContent = 'Kwote This!';
         popupButton.addEventListener('click', buttonCallback);
 
         popup.appendChild(popupButton);
@@ -91,8 +97,9 @@
         // TODO: add logic to update popup position on selection change
         // preventing multiple popups if one already exists
         if (selectedText && !selectionPopup) {
-            createPopup(() => {
-                saveQuote();
+            createPopup(async () => {
+                await saveQuote();
+                window.getSelection().empty();
             });
         }
     }
