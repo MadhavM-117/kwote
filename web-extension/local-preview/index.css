@@ -23,6 +23,12 @@ body, #preview-container {
     max-width: 800px;
 }
 
+.title-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .selection-preview-container {
     display: flex;
     justify-content: space-between;
@@ -42,6 +48,20 @@ body, #preview-container {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    text-overflow: ellipsis;
+}
+
+.selection-preview-title {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.selection-preview-title:hover {
+    overflow: auto;
+    white-space: normal;
+    text-overflow: unset;
 }
 
 .selection-preview-content {

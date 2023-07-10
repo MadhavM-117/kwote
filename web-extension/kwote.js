@@ -84,10 +84,12 @@
 
         const uuid = window.crypto.randomUUID();
         const quote = window.getSelection().toString();
+        const url = window.location.href;
+        const title = document.title;
 
         entryIds.unshift(uuid);
         await saveData('entryIds', entryIds);
-        await saveData(uuid, quote);
+        await saveData(uuid, { quote, url, title });
     }
 
     // Function to handle text selection

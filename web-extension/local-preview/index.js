@@ -1,4 +1,10 @@
-const createSelectionPreview = (selectionText, onDelete) => {
+/**
+ *
+ * @param savedQuote {{quote: string, url: string, title: string}}
+ * @param onDelete
+ * @returns {HTMLDivElement}
+ */
+const createSelectionPreview = (savedQuote, onDelete) => {
     const contentContainer = document.getElementById('preview-container');
 
     const previewContainer = document.createElement('div');
@@ -10,11 +16,18 @@ const createSelectionPreview = (selectionText, onDelete) => {
 
     const previewTitle = document.createElement('h3');
     previewHeader.appendChild(previewTitle);
-    previewTitle.textContent = 'Selection Preview';
+    previewTitle.classList.add('selection-preview-title');
+    previewTitle.textContent = savedQuote.title;
 
     const previewSource = document.createElement('span');
     previewHeader.appendChild(previewSource);
-    previewSource.textContent = 'Source URL';
+
+    const sourceLink = document.createElement('a');
+    sourceLink.href = savedQuote.url;
+    sourceLink.target = '_blank';
+    sourceLink.textContent = 'Source URL';
+
+    previewSource.appendChild(sourceLink);
 
     const deleteButton = document.createElement('button');
     previewHeader.appendChild(deleteButton);
@@ -27,7 +40,7 @@ const createSelectionPreview = (selectionText, onDelete) => {
     previewContainer.appendChild(preview);
 
     preview.classList.add('selection-preview-content');
-    preview.textContent = selectionText;
+    preview.textContent = savedQuote.quote;
 
     contentContainer.appendChild(previewContainer);
 

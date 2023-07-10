@@ -1,3 +1,28 @@
 body {
     width: 200px;
+    padding: 8px;
+}
+
+.header {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+}
+
+p {
+    /*padding: 2px 0;*/
+}
+
+.button-container {
+    padding: 8px 0;
+}
+
+button {
+    background-color: #2b2a33;
+    color: #eee;
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
 }
