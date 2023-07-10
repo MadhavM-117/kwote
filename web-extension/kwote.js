@@ -56,21 +56,20 @@
         const data = {};
         data[key] = value;
 
-        await chrome.storage.local.set(data)
-            .catch(error => {
-                console.error('Error saving data:', error);
+        await new Promise((resolve) => {
+            chrome.storage.local.set(data, () => {
+                resolve();
             });
+        });
     }
 
     // Function to retrieve data from local storage
     const getData = async (key) => {
-        return await chrome.storage.local.get(key)
-            .then(result => {
-                return result[key];
-            })
-            .catch(error => {
-                console.error('Error retrieving data:', error);
+        return await new Promise((resolve, reject) => {
+            chrome.storage.local.get(key, (result) => {
+                resolve(result[key]);
             });
+        });
     }
 
     // function to save the quote

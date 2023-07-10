@@ -49,13 +49,11 @@ const createSelectionPreview = (savedQuote, onDelete) => {
 
 // Function to retrieve data from local storage
 const getData = async (key) => {
-    return await chrome.storage.local.get(key)
-        .then(result => {
-            return result[key];
-        })
-        .catch(error => {
-            console.error('Error retrieving data:', error);
+    return await new Promise((resolve, reject) => {
+        chrome.storage.local.get(key, (result) => {
+            resolve(result[key]);
         });
+    });
 }
 
 const previewContainers = [];
@@ -67,21 +65,24 @@ const clearPreviews = () => {
     });
 }
 
+
 const saveData = async (key, value) => {
     const data = {};
     data[key] = value;
 
-    await chrome.storage.local.set(data)
-        .catch(error => {
-            console.error('Error saving data:', error);
+    await new Promise((resolve) => {
+        chrome.storage.local.set(data, (error) => {
+            resolve();
         });
+    });
 }
 
 const clearData = async (key) => {
-    await chrome.storage.local.remove(key)
-        .catch(error => {
-            console.error('Error clearing data:', error);
+    await new Promise((resolve) => {
+        chrome.storage.local.remove(key, (error) => {
+                resolve();
         });
+    });
 }
 
 const deleteEntry = async (entryId) => {
