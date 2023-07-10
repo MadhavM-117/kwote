@@ -7,7 +7,8 @@
   "author": "Madhav M. <madhavmanoj117@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:firefox": "web-ext run --source-dir ./ --firefox=firefox-dev"
+    "start:firefox": "web-ext run --source-dir ./ --firefox=firefox-dev",
+    "build": "web-ext build --source-dir ./ --overwrite-dest"
   },
   "devDependencies": {
     "web-ext": "^7.6.2"
