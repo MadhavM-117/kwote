@@ -1,6 +1,6 @@
 // Function to send a message to the background script
 function sendMessageToBackgroundScript(message) {
-    browser.runtime.sendMessage(message)
+    chrome.runtime.sendMessage(message)
         .then(response => {
             console.log('Message sent to background script:', message);
         })

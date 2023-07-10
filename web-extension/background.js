@@ -1,12 +1,12 @@
 
 // Listener for messages from the popup script
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log('received message', message, sender, sendResponse) ;
 
     if (message.action === 'openNewTab') {
         // Open a new tab with the extension HTML page
-        browser.tabs.create({
-            url: browser.runtime.getURL('/local-preview/index.html')
+        chrome.tabs.create({
+            url: chrome.runtime.getURL('/local-preview/index.html')
         }).then(tab => {
             console.log('New tab opened with URL:', tab.url);
             sendResponse({ success: true });

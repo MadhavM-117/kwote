@@ -56,7 +56,7 @@
         const data = {};
         data[key] = value;
 
-        await browser.storage.local.set(data)
+        await chrome.storage.local.set(data)
             .catch(error => {
                 console.error('Error saving data:', error);
             });
@@ -64,7 +64,7 @@
 
     // Function to retrieve data from local storage
     const getData = async (key) => {
-        return await browser.storage.local.get(key)
+        return await chrome.storage.local.get(key)
             .then(result => {
                 return result[key];
             })

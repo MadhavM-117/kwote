@@ -49,7 +49,7 @@ const createSelectionPreview = (savedQuote, onDelete) => {
 
 // Function to retrieve data from local storage
 const getData = async (key) => {
-    return await browser.storage.local.get(key)
+    return await chrome.storage.local.get(key)
         .then(result => {
             return result[key];
         })
@@ -71,14 +71,14 @@ const saveData = async (key, value) => {
     const data = {};
     data[key] = value;
 
-    await browser.storage.local.set(data)
+    await chrome.storage.local.set(data)
         .catch(error => {
             console.error('Error saving data:', error);
         });
 }
 
 const clearData = async (key) => {
-    await browser.storage.local.remove(key)
+    await chrome.storage.local.remove(key)
         .catch(error => {
             console.error('Error clearing data:', error);
         });
